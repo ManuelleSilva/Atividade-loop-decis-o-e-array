@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de cadastramento de disciplina</title>
+</head>
+<body>
+    <h1>SISTEMA DE CADASTRAMENTO DE NOTAS</h1>
+    <div id="resultado"></div>
+    <script>
+        /*Cadastre e imprima os dados das disciplinas de uma escola: nome, descrição do conteúdo, 
+        frequência e nota mínimas para aprovação do aluno. Até o pessoa desejar sair.*/
+        let i = prompt("Deseja digitar a matéria de um seu aluno?\n1.sim\n0.não:")
+        while (i > 0){
+        let materia= prompt("Digite o nome da matéria:");
+        let descricao = prompt("Digite a descrição do conteudo dado: ")
+       
+        let presenca = prompt("Digite a presença minima para a aprovação do aluno");
+        let nota = prompt("Digite a nota mínima para aprovação do aluno");
+        i = prompt("Deseja digitar a matéria de algum outro aluno seu?\n1.sim\n0.não:");
+
+        document.getElementById("resultado").innerHTML +="<hr>Matéria: " + materia + "<br>" + "Presença minima: " + presenca + "%" + "<br>" + "Nota minima para aprovação: " + nota + "<br>";
+    }
+    
+    </script>
+
+</body>
+</html>

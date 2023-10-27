@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recrutamento de Candidatos</title>
+</head>
+
+<body>
+    <div id="resultado"></div>
+    <script>
+        let idadeTotal = 0;
+        let totalCandidatos = 0;
+        let totalHomens = 0;
+        let totalMulheres = 0;
+        let totalComExperiencia = 0;
+
+        while (true) {
+            let numeroCandidato = parseInt(prompt("Digite o número do candidato (ou 0 para encerrar):"));
+            if (numeroCandidato === 0) {
+                break;
+            }
+
+            let idade = parseInt(prompt("Digite a idade do candidato:"));
+            let sexo = prompt("Digite o sexo do candidato (M para masculino, F para feminino):");
+            let experiencia = Number(prompt("O candidato tem experiência profissional? (1.Sim/0.Não):");
+
+            idadeTotal += idade;
+            totalCandidatos++;
+
+            if (sexo === "M" || sexo === "m") {
+                totalHomens++;
+            } else if (sexo === "F" || sexo === "f") {
+                totalMulheres++;
+            }
+
+            if (idade >= 18 && experiencia === 1) {
+                totalComExperiencia++;
+            }
+        }
+
+        let idadeMedia = idadeTotal / totalCandidatos;
+
+        let resultadoHTML = `<h2>Resultados:</h2>
+                             <p>Idade média dos candidatos: ${idadeMedia.toFixed(2)}</p>
+                             <p>Total de candidatos: ${totalCandidatos}</p>
+                             <p>Total de candidatos do sexo masculino: ${totalHomens}</p>
+                             <p>Total de candidatos do sexo feminino: ${totalMulheres}</p>
+                             <p>Total de candidatos maiores de idade com experiência: ${totalComExperiencia}</p>`;
+
+        document.getElementById("resultado").innerHTML = resultadoHTML;
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de qualidade</title>
+</head>
+<body>
+        <div id="resultado"></div>
+        <div id="pecasdefeituosas"></div>
+        <script>
+            let numpeca= Number;/*numero da peça*/
+            let qualidade = ""; /*aprovado, reprovado*/
+            let totalpositivo = 0;
+            let totalpecas = 0;
+            
+            let cadastro = prompt("Deseja começar a inserir as peças do dia?\n1.sim\n0.não");
+            while(cadastro > 0){
+                numpeca=prompt("Digite o código da peça:");
+                totalpecas += 1;
+                qualidade =prompt("A peça está em qualidade aceitavel/aprovado?\n1.sim\n0.não");
+                    if(qualidade == 1){
+                        totalpositivo += 1;
+                }else{
+                    document.getElementById("pecasdefeituosas").innerHTML +="A peça " + numpeca + " apresenta defeitos ou não atingiu as expectativas.<br>";
+                }
+                cadastro =prompt("Deseja digitar outras peças?\n1.sim\n0.não");
+            }
+
+            document.getElementById("resultado").innerHTML = "<h1>Cadastramento e analise de peças</h1> <p>O total de peças cadastrado durante o dia foi: " + totalpecas + "<br>O total de máquinas que atingiriram as expectativas e a qualidade durante o dia foram: "+ totalpositivo + "</p><h3>Peças que não atingiram as expectativas: </h3>";
+
+        </script>
+</body>
+</html>

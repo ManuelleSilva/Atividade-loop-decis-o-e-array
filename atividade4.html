@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Escolar Digital de Cadastramento(SEDC)</title>
+</head>
+
+<body>
+    <div id="resultado"></div>
+    <div id="final"></div>
+    <script>
+        
+        let aulasfrequentadas = 0;
+        let media = 0;
+        let registro = 0; 
+        let alunos = 0;
+        let porcentagempresente = 0;
+        let retorno = "";
+        let mediaturma = 0;
+        let medias = [];
+        let aprovados = 0;
+        let reprovadosFalta = 0;
+        let reprovadosNota = 0;
+        let reprovados = 0;
+        let reprovadostudo = 0;
+        let maiorMedia = -Infinity;
+        let menorMedia = Infinity;
+
+        registro = parseInt(prompt("Você deseja cadastrar as notas dos seus alunos?\n1.sim\n0.não"));
+        
+        while (registro > 0 && alunos < 70) {
+            let RMA = parseInt(prompt("Digite o RMA (registro de matrícula do aluno) do aluno:"));
+            let prova1 = parseFloat(prompt("Digite a nota do aluno na primeira prova (0 a 10)"));
+            let prova2 = parseFloat(prompt("Digite a nota do aluno na segunda prova (0 a 10)"));
+            let prova3 = parseFloat(prompt("Digite a nota do aluno na terceira prova (0 a 10)"));
+            media = ((prova1 + prova2 + prova3) / 3).toFixed(2);
+            aulasfrequentadas = parseInt(prompt("Digite a quantidade de aulas frequentadas por esse aluno, sabendo que o máximo de aulas dadas são 32"));
+            porcentagempresente = (aulasfrequentadas / 32) * 100;
+
+            if (media >= 7 || porcentagempresente >= 80) {
+                if (media >= 7 && porcentagempresente < 80) {
+                    retorno = "O aluno foi reprovado pois não atingiu a frequência necessária esperada";
+                    reprovadosFalta++;
+                } else if (media < 7 && porcentagempresente >= 80) {
+                    retorno = "O aluno foi reprovado pois não atingiu a nota necessária esperada e/ou as capacitações ensinadas";
+                    reprovadosNota++;
+                } else {
+                    retorno = "O aluno foi aprovado";
+                    aprovados++;
+                }
+            } else {
+                
+            }
+
+            document.getElementById("resultado").innerHTML += '<p>O aluno portador do RMA:' + RMA + "</p><p>Teve como média final: " + media + "</p><p>Situação final: " + retorno + "<hr>";
+            
+            if (media > maiorMedia) {
+                maiorMedia = media;
+            }
+            if (media < menorMedia) {
+                menorMedia = media;
+            }
+
+            medias.push(media);
+            alunos++;
+
+            registro = parseInt(prompt("Deseja continuar a registrar as notas de seus alunos?\n1.sim\n0.não"));
+        }
+
+        reprovados = reprovadosFalta + reprovadosNota + reprovadostudo;
+
+        let resultadoHTML = `<h2>Resultados:</h2><p>Médias da turma: ${medias.join(', ')}</p><p>Maior média da turma: ${maiorMedia}</p><p>Menor média da turma: ${menorMedia}</p><p>Total de alunos aprovados: ${aprovados}</p><p>Total de alunos reprovados somente por falta: ${reprovadosFalta}</p><p>Total de alunos reprovados somente por nota: ${reprovadosNota}</p><p>Total de alunos reprovados por nota e falta: ${reprovadostudo}<p>Total de alunos reprovados : ${reprovados}`; 
+
+        document.getElementById("final").innerHTML = resultadoHTML;
+    </script>
+</body>
+</html>

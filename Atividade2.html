@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>declaração de imposto</title>
+</head>
+<body>
+    <h1>Calculo de imposto</h1>
+    <div id="impostoderenda"></div>
+    <script>
+        let desconto = Number;
+        let rendaLiquida = Number;
+        let imposto=Number;
+
+        let i = prompt("Deseja calcular o seu imposto de renda: \n1.sim\n0.não");
+
+        while(i > 0){
+        let nomeCont = prompt("Digite o nome do contribuinte");
+        let cpf = prompt("Digite o CPF do contribuinte(somente números)");
+            cpf = cpf.replace(/\D/g, '');
+            cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+        let rendaAno = Number(prompt("Digite sua renda anual(somente numeros)"));
+        let dependente = Number(prompt("Digite a quantidade de dependentes"));
+
+        desconto= dependente*110;
+        rendaLiquida= rendaAno - desconto;
+
+        if (rendaLiquida <= 900){
+            imposto = 0; 
+        } else if (rendaLiquida <=5000){
+            imposto = rendaLiquida*0.05;
+        }  else if (rendaLiquida <= 10000){
+            imposto= rendaLiquida*0.1;
+        } else {
+            imposto= rendaLiquida*0.15;};
+
+        i = prompt("Deseja calcular o seu imposto de renda: \n1.sim\n0.não");
+
+        document.getElementById("impostoderenda").innerHTML += "<hr> <p>Contribuinte: " + nomeCont + "<br>" + "CPF: " + cpf + "<br>" + "Quantidade de contribuintes: " + dependente + "<br>" +"Renda Anual declarada: R$" + rendaAno + "<br>" + "Valor Líquido obtido: R$" + rendaLiquida + "<br>" + "Valor de imposto a ser pago: R$"+ imposto.toFixed(2) + "</p>";
+
+        }
+
+        
+    </script>
+</body>
+</html>
